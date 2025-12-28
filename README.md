@@ -1,4 +1,4 @@
-Desafio 2 — Nginx (proxy reverso) + Node.js + MySQL (Full Cycle)
+Desafio — Nginx (proxy reverso) + Node.js + MySQL (Full Cycle)
 
 O que este projeto faz
 - Nginx recebe requisições em http://localhost:8080
@@ -15,7 +15,7 @@ Requisitos atendidos (conforme solicitado)
 - Serviços: db, app, nginx
 - Volume de desenvolvimento: ./app montado em /usr/src/app no container app
 - MySQL exposto localmente em 3311 (container 3306)
-- Nginx exposto localmente em 8081 (container 80)
+- Nginx exposto localmente em 8080 (container 80)
 - Usuário do banco: user / senha: user
 - init.sql cria o schema e a tabela
 
