@@ -1,0 +1,61 @@
+version: "3.8"
+
+services:
+  db:
+    platform: linux/amd64
+    image: mysql:5.7
+    container_name: db
+    restart: always
+    environment:
+      MYSQL_DATABASE: fullcycle
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3311:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    networks:
+      - net-node
+
+  app:
+    build:
+      context: .
+      dockerfile: node/Dockerfile
+    container_name: app
+    restart: always
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: user
+      DB_PASSWORD: user
+      DB_NAME: fullcycle
+    depends_on:
+      - db
+    volumes:
+      - ./app:/usr/src/app
+      - /usr/src/app/node_modules
+    networks:
+      - net-node
+
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    container_name: nginx
+    restart: always
+    ports:
+      - "8080:80"
+    depends_on:
+      - app
+    networks:
+      - net-node
+
+networks:
+  net-node:
+    name: net-node
+    driver: bridge
+
+volumes:
+  db_data:
