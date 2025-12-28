@@ -1,7 +1,7 @@
 Desafio 2 — Nginx (proxy reverso) + Node.js + MySQL (Full Cycle)
 
 O que este projeto faz
-- Nginx recebe requisições em http://localhost:8081
+- Nginx recebe requisições em http://localhost:8080
 - Nginx encaminha (proxy reverso) para a aplicação Node.js (app:3000)
 - A aplicação Node.js insere um nome na tabela `people` do MySQL e retorna:
   <h1>Full Cycle Rocks!</h1>
