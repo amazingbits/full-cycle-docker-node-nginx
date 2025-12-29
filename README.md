@@ -45,3 +45,14 @@ Como subir (build + start)
    http://localhost:8080
 
 3) Cada refresh adiciona um nome novo na tabela `people` e retorna a lista.
+
+-----------------------------------------------------------------------
+Observação sobre dependência entre containers
+
+Foi adicionado um healthcheck no serviço de banco de dados (MySQL) e configurada
+a dependência do serviço Node.js para iniciar apenas quando o banco estiver
+100% disponível (service_healthy).
+
+Essa abordagem garante que a aplicação não tente se conectar ao banco antes
+dele estar pronto, seguindo as boas práticas apresentadas no módulo de
+Docker Compose do curso Full Cycle.
